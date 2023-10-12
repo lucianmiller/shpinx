@@ -1,25 +1,28 @@
-using System.Collection.Generic;
+using System.Collections.Generic;
 
 namespace Sphinx.Models
 {
   public class Riddle
   {
-    public string Answer1 { get: set:}
+    public List<string> Answers { get; set; }
+    public bool ContinueGame { get; set; }
 
-    public Riddle(string answer)
+    public Riddle()
     {
-      answer = Answer1;
+      Answers = new List<string> {"man", "footsteps"};
+      ContinueGame = true;
     }
 
-    public string CheckAnswers()
+    public string CheckAnswers(string userAnswer, int questionNum)
     {
-      if (Answer1 = "man" || Answer1 = "Man")
+      if (Answers[questionNum-1].ToLower() == userAnswer)
       {
-        return "Correct!"
+        return "Correct!";
       }
       else
       {
-        return "Incorrect! Now I eat you!"
+        ContinueGame = false;
+        return "Incorrect! Now I eat you!";
       }
     }
   }
